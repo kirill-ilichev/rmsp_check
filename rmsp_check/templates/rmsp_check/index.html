@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Проверка ОГРН или ИНН</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="form-wrapper">
+        <form method="post" class="form">
+            {% csrf_token %}
+            <div>
+                <label for="document-number">Введите ОГРН или ИНН: </label>
+                <p><input type="text" onkeypress="return isNumberKey(event)" class="document-number-input" required="" name="query" id="document-number" maxlength="15"></p>
+            </div>
+            <input type="submit" value="Проверить" id="check">
+        </form>
+        <div class="query-result query-result-hidden">
+            <h1 class="table-header">Результат Вашего запроса</h1>
+            <table class="query-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Документ</th>
+                        <th scope="col">Номер документа</th>
+                        <th scope="col">Малое или среднее предпринимательство</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td class="query-table-cell-type"></td>
+                            <td class="query-table-cell-number"></td>
+                            <td class="query-table-cell-is-msp"></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="query-list">
+        <h1 class="table-header">Список всех запросов</h1>
+        <table class="query-table">
+            <thead>
+                <tr>
+                    <th scope="col">Документ</th>
+                    <th scope="col">Номер документа</th>
+                    <th scope="col">Малое или среднее предпринимательство</th>
+                </tr>
+            </thead>
+            <tbody class="query-table-body">
+                {% for query in object_list %}
+                    <tr class="query-table-row">
+                        <td>{{query.get_document_type_verbose}}</td>
+                        <td>{{query.document_number}}</td>
+                        <td>{% if query.is_msp %}Да{% else %}Нет{% endif %}</td>
+                    </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <script>
+    function isNumberKey(e){
+        let charCode = (e.which) ? e.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    </script>
+    <script src="{% static 'js/documentWalidators.js' %}" type="text/javascript"></script>
+</body>
+</html>
