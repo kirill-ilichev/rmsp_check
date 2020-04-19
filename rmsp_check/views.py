@@ -16,7 +16,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 class HomeView(ListView):
     """
     Render page with queries list from all users
-    and form to check is INN or OGRN subject is small or medium enterprise
+    and form to check is INN or OGRN subject is small or medium-sized enterprise
     """
     template_name = 'rmsp_check/index.html'
     model = RmspQuery

@@ -1,4 +1,5 @@
 # rmsp_check
+## This script allows to check by INN or OGRN is subject small or medium-sized enterprise
 To easy install this script, you should install Docker from oficial site https://docs.docker.com/
 ## Installation
 1. `git clone https://github.com/kirill-ilichev/rmsp_check.git`
