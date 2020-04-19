@@ -1,3 +1,2 @@
 #!/bin/bash
-cp .env_template .env
-chmod -R o+rwx .env
+cp -p .env_template .env
