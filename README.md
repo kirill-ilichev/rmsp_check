@@ -6,8 +6,9 @@ To easy install this script, you should install Docker from oficial site https:/
 2. `cd rmsp_check`
 3. `cd conf`
 4. `sudo bash create_env.sh`
-4. Make sure that you Docker is running
-5. `sudo docker-compose build`
-6. `sudo docker-compose run web python manage.py migrate`
-7. `sudo docker-compose up`
-8. open in your browser 127.0.0.1:8000
+5. `cd ..`
+6. Make sure that you Docker is running
+7. `sudo docker-compose build`
+8. `sudo docker-compose run web python manage.py migrate`
+9. `sudo docker-compose up`
+10. open in your browser 127.0.0.1:8000
